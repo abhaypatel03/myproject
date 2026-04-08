@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+ABHAY DEVLOPER
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center fw-bold text-warning mt-5">Hello ABHAY 🕷️</h1>
+
+
+<a href="{% url 'tweet_create' %}" class="btn btn-primary mb-4">Create A Tweet</a>
+
+<div class="container row gap-3 justify-content-center">
+    {% for tweet in tweets %}
+    <div class="card bg-dark text-light border-secondary p-0 mb-3" style="width: 18rem;">
+        {% if tweet.photo %}
+        <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
+        {% else %}
+        <div class="bg-secondary card-img-top d-flex align-items-center justify-content-center" style="height: 150px;">
+            <span class="text-muted">No Image</span>
+        </div>
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title text-warning">@{{tweet.user.username}}</h5>
+            <p class="card-text">{{tweet.text}}</p>
+            <div class="d-flex justify-content-between mt-3">
+                <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-center text-muted">No tweets found. Be the first to create one!</p>
+    {% endfor %}
+
+</div>
+{% endblock %}
