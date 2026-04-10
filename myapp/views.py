@@ -33,6 +33,7 @@ def tweet_create(request):
         form = TweetForm()
 
     return render(request, 'myapp/tweet_form.html', {'form': form})
+    return render(request, 'myapp/tweet_form.html', {'form': form})
 
 # Tweet Detail
 def tweet_detail(request, tweet_id):
