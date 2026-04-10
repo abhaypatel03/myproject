@@ -27,11 +27,12 @@ def tweet_create(request):
             tweet.user = request.user
             tweet.save()
             return redirect('tweet_list')
+        else:
+            print(form.errors)   # 👈 ADD THIS
     else:
         form = TweetForm()
 
     return render(request, 'myapp/tweet_form.html', {'form': form})
-
 
 # Tweet Detail
 def tweet_detail(request, tweet_id):
